@@ -45,11 +45,11 @@ namespace IdentityRoles.Pages.Member
                 if (createAdminRoleResult.Succeeded)
                 {
                     adminRoleExists = true;
-
                 }
             }
 
-            else if (adminRoleExists)
+            // Om Admin-rollen nu existerar eller precis skapades...
+            if (adminRoleExists)
             {
                 // 3. Hämta den nuvarande inloggade användaren
                 IdentityUser? loggedInUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -57,10 +57,6 @@ namespace IdentityRoles.Pages.Member
                 // 4. Lägg till Admin-rollen till den nuvarande inloggade användaren
                 var addToAdminRoleResult = await _userManager.AddToRoleAsync(loggedInUser, "Admin");
 
-                if (addToAdminRoleResult.Succeeded)
-                {
-                    return RedirectToPage("/Admin/Index");
-                }
             }
 
             return Page();
