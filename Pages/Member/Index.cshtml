@@ -1,0 +1,17 @@
+﻿@page
+@model IdentityRoles.Pages.Member.IndexModel
+@{
+}
+<h1>Member page</h1>
+
+
+@if (Model.IsAdmin)
+{
+    <strong class="text-primary">Congrats for being an Admin!</strong>
+}
+else
+{
+    <form method="post">
+        <input type="submit" value="Make me an Admin!" />
+    </form>
+}
